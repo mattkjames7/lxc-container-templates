@@ -13,7 +13,7 @@ echo "ubuntu-26.04" > $tmpdir/etc/hostname
 echo "root:root" | chroot $tmpdir chpasswd
 
 chroot "$tmpdir" apt update
-chroot "$tmpdir" apt install -y systemd systemd-sysv sudo iproute2 openssh-server
+chroot "$tmpdir" apt install -y systemd systemd-sysv sudo iproute2
 mkdir -p "$tmpdir/etc/systemd/network"
 
 rm -rf "$tmpdir/dev"/*

@@ -15,3 +15,7 @@ echo "deb http://deb.debian.org/debian bookworm-backports main" \
 apt update
 apt install -y -t bookworm-backports debootstrap
 ```
+
+# On proxmox
+
+Copy to `/var/lib/vz/template/cache`
