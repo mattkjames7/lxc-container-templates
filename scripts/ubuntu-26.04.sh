@@ -5,6 +5,8 @@ set -e
 BUILD_DIR=${1:-$(pwd)/build}
 BUILD_DIR=$BUILD_DIR/ubuntu-26.04
 
+OUTPUT_DIR=${2:-$(pwd)/output}
+
 if [[ ! -d $BUILD_DIR ]]; then
     mkdir -p $BUILD_DIR
     debootstrap --arch=amd64 --variant=minbase resolute $BUILD_DIR http://archive.ubuntu.com/ubuntu/
@@ -25,6 +27,6 @@ rm -f "$BUILD_DIR/etc/machine-id"
 : > "$BUILD_DIR/etc/machine-id"
 rm -f "$BUILD_DIR/etc/ssh/ssh_host_"* 2>/dev/null || true
 
-filename="ubuntu-26.04-amd64-$(date +%Y%m%d%H%M%S).tar"
+filename="${OUTPUT_DIR}/ubuntu-26.04-amd64-$(date +%Y%m%d%H%M%S).tar"
 tar --numeric-owner -cpf "$filename" -C $BUILD_DIR .
 xz -T0 "$filename"

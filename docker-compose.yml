@@ -9,4 +9,5 @@ services:
     container_name: debian-builder
     volumes:
       - ./build:/tmp/build
+      - ./output:/tmp/output
       - ./scripts:/tmp/scripts

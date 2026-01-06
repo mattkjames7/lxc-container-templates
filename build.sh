@@ -44,13 +44,16 @@ SCRIPT_NAME="${SCRIPT_NAME_PART}.sh"
 if [[ ! -d ./build ]]; then
     mkdir ./build
 fi
+if [[ ! -d ./output ]]; then
+    mkdir ./output
+fi
 uid=$(id -u)
 gid=$(id -g)
 
 docker compose up -d $target
 
 container_name="$(docker compose ps -q $target)"
-docker exec -it "$container_name" bash -c "/tmp/scripts/${SCRIPT_NAME} /tmp/build"
-docker exec -it "$container_name" bash -c "chown ${uid}:${gid} /tmp/build/${SCRIPT_NAME_PART}*.tar*"
+docker exec -it "$container_name" bash -c "/tmp/scripts/${SCRIPT_NAME} /tmp/build /tmp/output"
+docker exec -it "$container_name" bash -c "chown ${uid}:${gid} /tmp/output/${SCRIPT_NAME_PART}*.tar*"
 
 docker compose down

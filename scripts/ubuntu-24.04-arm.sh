@@ -5,6 +5,8 @@ set -e
 BUILD_DIR=${1:-$(pwd)/build}
 BUILD_DIR=$BUILD_DIR/ubuntu-24.04-arm
 
+OUTPUT_DIR=${2:-$(pwd)/output}
+
 if [[ ! -d $BUILD_DIR ]]; then
     mkdir -p $BUILD_DIR
     debootstrap --arch=arm64 --variant=minbase noble $BUILD_DIR http://ports.ubuntu.com/
@@ -24,6 +26,6 @@ rm -f "$BUILD_DIR/etc/machine-id"
 : > "$BUILD_DIR/etc/machine-id"
 rm -f "$BUILD_DIR/etc/ssh/ssh_host_"* 2>/dev/null || true
 
-filename="ubuntu-24.04-arm64-$(date +%Y%m%d%H%M%S).tar"
+filename="${OUTPUT_DIR}/ubuntu-24.04-arm64-$(date +%Y%m%d%H%M%S).tar"
 tar --numeric-owner -cpf "$filename" -C $BUILD_DIR .
 xz -T0 "$filename"
