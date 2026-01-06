@@ -1,0 +1,12 @@
+
+# debian builder
+services:
+  debian-builder:
+    image: debian-builder:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.deb
+    container_name: debian-builder
+    volumes:
+      - ./build:/tmp/build
+      - ./scripts:/tmp/scripts
