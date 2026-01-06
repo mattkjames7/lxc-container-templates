@@ -6,7 +6,7 @@ tmpdir=$(pwd)/build/ubuntu-26.04-arm
 
 if [[ ! -d $tmpdir ]]; then
     mkdir -p $tmpdir
-    debootstrap --arch=arm64 --variant=minbase resolute $tmpdir http://ports.ubuntu.com/
+    debootstrap --arch=arm64 --variant=minbase resolute $tmpdir http://ports.ubuntu.com/ noble
 fi
 
 echo "ubuntu-26.04" > $tmpdir/etc/hostname
