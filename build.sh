@@ -38,7 +38,7 @@ fi
 
 SCRIPT_NAME_PART="${OS}"
 if [[ "$(arch)" == "aarch64" ]]; then
-    SCRIPT_NAME_PART="${SCRIPT_NAME_PART}-arm64"
+    SCRIPT_NAME_PART="${SCRIPT_NAME_PART}-arm"
 fi
 SCRIPT_NAME="${SCRIPT_NAME_PART}.sh"
 
@@ -54,7 +54,7 @@ gid=$(id -g)
 docker compose up -d $target
 
 container_name="$(docker compose ps -q $target)"
-docker exec -it "$container_name" bash -c "/tmp/scripts/${SCRIPT_NAME} /tmp/build /tmp/output"
+docker exec -it "$container_name" bash -c "/tmp/scripts/${SCRIPT_NAME} /build /tmp/output"
 docker exec -it "$container_name" bash -c "chown ${uid}:${gid} /tmp/output/${SCRIPT_NAME_PART}*.tar*"
 
 docker compose down

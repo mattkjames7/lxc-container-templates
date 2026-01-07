@@ -8,6 +8,6 @@ services:
       dockerfile: Dockerfile.deb
     container_name: debian-builder
     volumes:
-      - ./build:/tmp/build
+      - ./build:/build
       - ./output:/tmp/output
       - ./scripts:/tmp/scripts
