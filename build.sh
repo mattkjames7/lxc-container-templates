@@ -3,6 +3,7 @@
 set -euo pipefail
 
 SUPPORTED_OS=(
+    debian-12
     debian-13
     ubuntu-24.04
     ubuntu-26.04
